@@ -3,7 +3,7 @@ package com.llucasandersen.lucasfbla2025bankingapp
 import android.content.Intent
 import android.os.Bundle
 import android.widget.EditText
-import android.widget.Toast
+import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import com.github.leandroborgesferreira.loadingbutton.customViews.CircularProgressButton
 import io.appwrite.Client
@@ -18,6 +18,7 @@ class LoginActivity : AppCompatActivity() {
     private lateinit var emailEditText: EditText
     private lateinit var passwordEditText: EditText
     private lateinit var loginButton: CircularProgressButton
+    private lateinit var errorTextView: TextView
     private lateinit var client: Client
     private lateinit var account: Account
 
@@ -28,6 +29,7 @@ class LoginActivity : AppCompatActivity() {
         emailEditText = findViewById(R.id.emailEditText)
         passwordEditText = findViewById(R.id.passwordEditText)
         loginButton = findViewById(R.id.loginButton)
+        errorTextView = findViewById(R.id.errorTextView)
 
         // Initialize Appwrite Client
         client = Client(this)
@@ -43,7 +45,7 @@ class LoginActivity : AppCompatActivity() {
             val password = passwordEditText.text.toString().trim()
 
             if (email.isEmpty() || password.isEmpty()) {
-                Toast.makeText(this, "Please enter email and password", Toast.LENGTH_SHORT).show()
+                showErrorMessage("Please enter email and password.")
             } else {
                 loginUser(email, password)
             }
@@ -65,22 +67,30 @@ class LoginActivity : AppCompatActivity() {
 
                 withContext(Dispatchers.Main) {
                     loginButton.revertAnimation() // Revert animation on success
+                    errorTextView.visibility = TextView.GONE // Hide the error message if successful
+
+                    // Check roles or user labels
                     if (user.labels.contains("admin")) {
                         navigateToAdminDashboard()
                     } else if (user.labels.contains("user")) {
                         navigateToUserDashboard()
                     } else {
-                        Toast.makeText(this@LoginActivity, "Unknown user role", Toast.LENGTH_SHORT).show()
+                        showErrorMessage("Unknown user role.")
                     }
                 }
             } catch (e: Exception) {
                 // Handle login error
                 withContext(Dispatchers.Main) {
                     loginButton.revertAnimation() // Revert animation on failure
-                    Toast.makeText(this@LoginActivity, "Login failed: ${e.message}", Toast.LENGTH_LONG).show()
+                    showErrorMessage("Invalid credentials. Please check your email and password.")
                 }
             }
         }
+    }
+
+    private fun showErrorMessage(message: String) {
+        errorTextView.text = message
+        errorTextView.visibility = TextView.VISIBLE
     }
 
     private fun navigateToAdminDashboard() {

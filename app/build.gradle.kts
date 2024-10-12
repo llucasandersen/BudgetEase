@@ -51,6 +51,8 @@ dependencies {
     // Add JitPack for loading button
     implementation("com.github.leandroborgesferreira:loading-button-android:2.3.0")
 
+
+
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.test.ext.junit)
     androidTestImplementation(libs.espresso.core)

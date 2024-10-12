@@ -14,7 +14,7 @@
             android:scaleType="centerCrop"
             android:layout_alignParentTop="true"
             android:src="@drawable/ic_login_bk"
-            android:layout_marginTop="-102dp" />
+            android:layout_marginTop="-102dp"/>
 
     <!-- Title: Budget Ease -->
     <TextView
@@ -26,15 +26,26 @@
             android:textStyle="bold"
             android:textColor="@color/colorAccent"
             android:layout_marginTop="50dp"
-            android:layout_centerHorizontal="true"
-            android:textAppearance="@style/TextAppearance.AppCompat.Large" />
+            android:layout_centerHorizontal="true"/>
 
-    <!-- CardView for Login Form (Extended for More Space) -->
+    <!-- Error Message TextView -->
+    <TextView
+            android:id="@+id/errorTextView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Invalid credentials. Please check your email and password."
+            android:textSize="14sp"
+            android:textColor="@android:color/holo_red_light"
+            android:layout_below="@id/tvBudgetEase"
+            android:layout_centerHorizontal="true"
+            android:visibility="gone"/>
+
+    <!-- CardView for Login Form -->
     <androidx.cardview.widget.CardView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_margin="20dp"
-            android:layout_below="@id/tvBudgetEase"
+            android:layout_below="@id/errorTextView"
             android:background="@color/whiteCardColor"
             app:cardCornerRadius="16dp"
             app:cardElevation="10dp">
@@ -56,33 +67,46 @@
                     android:textStyle="bold"
                     android:textColor="@color/primaryTextColor"
                     android:layout_gravity="center"
-                    android:layout_marginBottom="20dp"
-                    android:textAppearance="@style/TextAppearance.AppCompat.Large" />
+                    android:layout_marginBottom="20dp"/>
 
             <!-- Email EditText -->
             <com.google.android.material.textfield.TextInputLayout
-                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:hint="Email">
+                    android:hint="Email"
+                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                    app:boxBackgroundMode="outline"
+                    app:boxStrokeColor="@color/colorPrimary"
+                    app:hintEnabled="true">
 
                 <com.google.android.material.textfield.TextInputEditText
                         android:id="@+id/emailEditText"
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
+                        android:layout_height="40dp"
                         android:inputType="textEmailAddress"
                         android:textColor="@color/primaryTextColor"
-                        android:padding="10dp" />
+                        android:padding="10dp"/>
             </com.google.android.material.textfield.TextInputLayout>
 
-            <!-- Password EditText with Password Toggle Icon -->
+
+            <!-- Password EditText -->
+            <Space
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"/>
+            <Space
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"/>
+            <Space
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"/>
             <com.google.android.material.textfield.TextInputLayout
-                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:hint="Password"
-                    app:endIconMode="password_toggle"
-                    android:layout_marginTop="20dp">
+                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                    app:boxBackgroundMode="outline"
+                    app:boxStrokeColor="@color/colorPrimary"
+                    app:endIconMode="password_toggle">
 
                 <com.google.android.material.textfield.TextInputEditText
                         android:id="@+id/passwordEditText"
@@ -90,8 +114,9 @@
                         android:layout_height="wrap_content"
                         android:inputType="textPassword"
                         android:textColor="@color/primaryTextColor"
-                        android:padding="10dp" />
+                        android:padding="10dp"/>
             </com.google.android.material.textfield.TextInputLayout>
+
 
             <!-- Circular Loading Button -->
             <com.github.leandroborgesferreira.loadingbutton.customViews.CircularProgressButton
@@ -100,11 +125,7 @@
                     android:layout_height="wrap_content"
                     android:text="Login"
                     android:backgroundTint="@color/colorPrimary"
-                    app:layout_constraintTop_toBottomOf="@id/passwordEditText"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    android:layout_marginTop="24dp" />
-
+                    android:layout_marginTop="24dp"/>
         </LinearLayout>
     </androidx.cardview.widget.CardView>
 
