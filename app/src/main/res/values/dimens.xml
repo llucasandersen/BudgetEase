@@ -1,0 +1,4 @@
+<resources>
+    <dimen name="loginCardRadius">12dp</dimen>
+    <dimen name="loginViewsMargin">16dp</dimen>
+</resources>

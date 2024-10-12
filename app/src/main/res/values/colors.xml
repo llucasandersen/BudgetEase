@@ -1,0 +1,7 @@
+<resources>
+    <color name="colorPrimary">#50C878</color>
+    <color name="colorPrimaryDark">#08542f</color>
+    <color name="colorAccent">#50cc60</color>
+    <color name="whiteCardColor">#FFFFFF</color>
+    <color name="primaryTextColor">#000000</color>
+</resources>
