@@ -82,7 +82,7 @@
                 <com.google.android.material.textfield.TextInputEditText
                         android:id="@+id/emailEditText"
                         android:layout_width="match_parent"
-                        android:layout_height="40dp"
+                        android:layout_height="45dp"
                         android:inputType="textEmailAddress"
                         android:textColor="@color/primaryTextColor"
                         android:padding="10dp"/>

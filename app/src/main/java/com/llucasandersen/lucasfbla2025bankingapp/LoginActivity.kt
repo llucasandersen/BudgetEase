@@ -69,13 +69,17 @@ class LoginActivity : AppCompatActivity() {
                     loginButton.revertAnimation() // Revert animation on success
                     errorTextView.visibility = TextView.GONE // Hide the error message if successful
 
-                    // Check roles or user labels
+                    // Check if the user has an "admin" label
                     if (user.labels.contains("admin")) {
-                        navigateToAdminDashboard()
-                    } else if (user.labels.contains("user")) {
-                        navigateToUserDashboard()
+                        // If user is an admin, navigate to AdminDashboardActivity
+                        val intent = Intent(this@LoginActivity, AdminDashboardActivity::class.java)
+                        intent.putExtra("user_email", email)
+                        startActivity(intent)
                     } else {
-                        showErrorMessage("Unknown user role.")
+                        // Otherwise, navigate to UserDashboardActivity
+                        val intent = Intent(this@LoginActivity, UserDashboardActivity::class.java)
+                        intent.putExtra("user_email", email)
+                        startActivity(intent)
                     }
                 }
             } catch (e: Exception) {
@@ -91,15 +95,5 @@ class LoginActivity : AppCompatActivity() {
     private fun showErrorMessage(message: String) {
         errorTextView.text = message
         errorTextView.visibility = TextView.VISIBLE
-    }
-
-    private fun navigateToAdminDashboard() {
-        val intent = Intent(this, AdminDashboardActivity::class.java)
-        startActivity(intent)
-    }
-
-    private fun navigateToUserDashboard() {
-        val intent = Intent(this, UserDashboardActivity::class.java)
-        startActivity(intent)
     }
 }

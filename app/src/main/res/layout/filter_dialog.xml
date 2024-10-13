@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:layout_width="match_parent"
+              android:layout_height="wrap_content"
+              android:orientation="vertical"
+              android:background="@drawable/search_bar_bg"
+              android:padding="16dp">
+
+    <!-- Main Filter Options -->
+    <RadioGroup
+            android:id="@+id/mainFilterRadioGroup"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+        <!-- Filter by Date -->
+        <RadioButton
+                android:id="@+id/radioDate"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Date" />
+
+        <!-- Filter by Cost -->
+        <RadioButton
+                android:id="@+id/radioCost"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Cost" />
+
+        <!-- Filter by Company -->
+        <RadioButton
+                android:id="@+id/radioCompany"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Company" />
+    </RadioGroup>
+
+    <!-- Sorting Sub-Options -->
+    <LinearLayout
+            android:id="@+id/sortingOptionsContainer"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:visibility="gone"> <!-- Initially hidden, show when a main filter is selected -->
+
+        <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Sort By:"
+                android:textStyle="bold"
+                android:paddingTop="16dp"
+                android:paddingBottom="8dp" />
+
+        <RadioGroup
+                android:id="@+id/sortingRadioGroup"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+            <!-- Newest to Oldest -->
+            <RadioButton
+                    android:id="@+id/radioNewestToOldest"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Newest to Oldest" />
+
+            <!-- Oldest to Newest -->
+            <RadioButton
+                    android:id="@+id/radioOldestToNewest"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Oldest to Newest" />
+
+            <!-- Alphabetical A-Z -->
+            <RadioButton
+                    android:id="@+id/radioAlphabeticalAsc"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Alphabetical (A-Z)" />
+
+            <!-- Alphabetical Z-A -->
+            <RadioButton
+                    android:id="@+id/radioAlphabeticalDesc"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Alphabetical (Z-A)" />
+        </RadioGroup>
+    </LinearLayout>
+</LinearLayout>
