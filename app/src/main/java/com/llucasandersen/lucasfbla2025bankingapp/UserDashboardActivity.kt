@@ -1,13 +1,18 @@
 package com.llucasandersen.lucasfbla2025bankingapp
 
-import android.app.AlertDialog
+import android.content.Intent
 import android.os.Bundle
 import android.os.Handler
 import android.os.Looper
 import android.text.Editable
 import android.text.TextWatcher
+import android.view.View
 import android.widget.*
+import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.view.GravityCompat
+import androidx.drawerlayout.widget.DrawerLayout
+import com.google.android.material.navigation.NavigationView
 import io.appwrite.Client
 import io.appwrite.Query
 import io.appwrite.exceptions.AppwriteException
@@ -19,6 +24,7 @@ import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 import java.text.SimpleDateFormat
 import java.util.*
+import kotlin.math.absoluteValue
 
 class UserDashboardActivity : AppCompatActivity() {
 
@@ -26,19 +32,52 @@ class UserDashboardActivity : AppCompatActivity() {
     private lateinit var databases: Databases
     private lateinit var searchBar: EditText
     private lateinit var filterButton: ImageView
+    private lateinit var drawerLayout: DrawerLayout
+    private lateinit var navigationView: NavigationView
     private val transactions = mutableListOf<Document<Map<String, Any>>>()
 
     private var totalBalance = 0.0
     private var monthSpending = 0.0
     private var weekSpending = 0.0
 
-    // Handler for periodic updates
+
     private val updateHandler = Handler(Looper.getMainLooper())
     private val updateInterval = 30000 // 30 seconds
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_user_dashboard)
+
+        // Initialize UI elements
+        drawerLayout = findViewById(R.id.drawer_layout)
+        navigationView = findViewById(R.id.nav_view)
+
+        // Set up navigation item selection
+        navigationView.setNavigationItemSelectedListener { menuItem ->
+            when (menuItem.itemId) {
+                R.id.nav_home -> {
+                    drawerLayout.closeDrawer(GravityCompat.START)
+                    true
+                }
+                R.id.nav_finances -> {
+                    val userEmail = intent.getStringExtra("user_email") ?: ""
+                    val intent = Intent(this, FinancesActivity::class.java)
+                    intent.putExtra("username", userEmail)  // Pass the username as "username"
+                    startActivity(intent)
+                    drawerLayout.closeDrawer(GravityCompat.START)
+                    true
+                }
+                R.id.nav_settings -> {
+                    val userEmail = intent.getStringExtra("user_email") ?: ""
+                    val intent = Intent(this, SettingsActivity::class.java)
+                    intent.putExtra("username", userEmail)
+                    startActivity(intent)
+                    drawerLayout.closeDrawer(GravityCompat.START)
+                    true
+                }
+                else -> false
+            }
+        }
 
         // Initialize Appwrite Client and Database
         client = Client(applicationContext)
@@ -152,7 +191,7 @@ class UserDashboardActivity : AppCompatActivity() {
                 .parse(transaction.data["time"] as? String ?: "")?.time ?: continue
 
             val amount = transaction.data["moneyamount"] as? Double ?: 0.0
-            val expensetype = transaction.data["expensetype"] as? String ?: "expense"
+            val expensetype = transaction.data["expensetype"] as? String ?: "epic"
             val isRedeemed = transaction.data["isredeemed"] as? Boolean ?: false
 
             // Adjust balance for unredeemed transactions
@@ -181,7 +220,11 @@ class UserDashboardActivity : AppCompatActivity() {
 
     // Adjust user balance
     private suspend fun adjustBalance(expensetype: String, amount: Double) {
-        totalBalance += if (expensetype == "income") amount else -amount
+        if (expensetype == "income") {
+            totalBalance += amount
+        } else {
+            totalBalance -= amount
+        }
         updateBalanceInCollection(intent.getStringExtra("user_email") ?: "")
     }
 
@@ -306,94 +349,105 @@ class UserDashboardActivity : AppCompatActivity() {
         }
     }
 
-    // Show filter dialog
     private fun showFilterDialog() {
         val builder = AlertDialog.Builder(this)
         val inflater = layoutInflater
         val dialogLayout = inflater.inflate(R.layout.filter_dialog, null)
 
-        val dateOption = dialogLayout.findViewById<RadioButton>(R.id.radioDate)
-        val costOption = dialogLayout.findViewById<RadioButton>(R.id.radioCost)
-        val companyOption = dialogLayout.findViewById<RadioButton>(R.id.radioCompany)
-        val newestToOldestOption = dialogLayout.findViewById<RadioButton>(R.id.radioNewestToOldest)
-        val alphabeticalAscOption = dialogLayout.findViewById<RadioButton>(R.id.radioAlphabeticalAsc)
-        val alphabeticalDescOption = dialogLayout.findViewById<RadioButton>(R.id.radioAlphabeticalDesc)
+        val mainFilterRadioGroup = dialogLayout.findViewById<RadioGroup>(R.id.mainFilterRadioGroup)
+        val sortingOptionsContainer = dialogLayout.findViewById<LinearLayout>(R.id.sortingOptionsContainer)
+        val sortingRadioGroup = dialogLayout.findViewById<RadioGroup>(R.id.sortingRadioGroup)
+
+        // Handle main filter selection to display sorting options
+        mainFilterRadioGroup.setOnCheckedChangeListener { _, checkedId ->
+            sortingOptionsContainer.visibility = View.VISIBLE
+            when (checkedId) {
+                R.id.radioDate -> showSortingOptions(sortingRadioGroup, "date")
+                R.id.radioCost -> showSortingOptions(sortingRadioGroup, "cost")
+                R.id.radioCompany -> showSortingOptions(sortingRadioGroup, "company")
+            }
+        }
 
         builder.setView(dialogLayout)
         builder.setTitle("Filter Transactions")
         builder.setPositiveButton("Apply") { _, _ ->
-            when {
-                dateOption.isChecked -> filterByDate()
-                costOption.isChecked -> filterByCost()
-                companyOption.isChecked -> filterByCompany()
-                newestToOldestOption.isChecked -> sortByNewestToOldest()
-                alphabeticalAscOption.isChecked -> sortAlphabeticallyAsc()
-                alphabeticalDescOption.isChecked -> sortAlphabeticallyDesc()
-            }
+            applySelectedSorting(mainFilterRadioGroup, sortingRadioGroup)
         }
         builder.setNegativeButton("Cancel", null)
         builder.show()
     }
 
-    // Filter by date
-    private fun filterByDate() {
+    // Show sorting options based on the selected main filter
+    private fun showSortingOptions(sortingRadioGroup: RadioGroup, filterType: String) {
+        sortingRadioGroup.clearCheck()
+        sortingRadioGroup.findViewById<RadioButton>(R.id.radioCostAsc).visibility = if (filterType == "cost") View.VISIBLE else View.GONE
+        sortingRadioGroup.findViewById<RadioButton>(R.id.radioCostDesc).visibility = if (filterType == "cost") View.VISIBLE else View.GONE
+        sortingRadioGroup.findViewById<RadioButton>(R.id.radioNewestToOldest).visibility = if (filterType == "date") View.VISIBLE else View.GONE
+        sortingRadioGroup.findViewById<RadioButton>(R.id.radioOldestToNewest).visibility = if (filterType == "date") View.VISIBLE else View.GONE
+        sortingRadioGroup.findViewById<RadioButton>(R.id.radioAlphabeticalAsc).visibility = if (filterType == "company") View.VISIBLE else View.GONE
+        sortingRadioGroup.findViewById<RadioButton>(R.id.radioAlphabeticalDesc).visibility = if (filterType == "company") View.VISIBLE else View.GONE
+    }
+
+    // Apply sorting based on selected filter and sorting order
+    // Apply sorting based on selected filter and sorting order
+    private fun applySelectedSorting(mainFilterRadioGroup: RadioGroup, sortingRadioGroup: RadioGroup) {
+        when (mainFilterRadioGroup.checkedRadioButtonId) {
+            R.id.radioDate -> {
+                when (sortingRadioGroup.checkedRadioButtonId) {
+                    R.id.radioNewestToOldest -> sortByDateNewestToOldest()
+                    R.id.radioOldestToNewest -> sortByDateOldestToNewest()
+                }
+            }
+            R.id.radioCost -> {
+                when (sortingRadioGroup.checkedRadioButtonId) {
+                    R.id.radioCostAsc -> sortByAmountLowestToHighest()
+                    R.id.radioCostDesc -> sortByAmountHighestToLowest()
+                }
+            }
+            R.id.radioCompany -> {
+                when (sortingRadioGroup.checkedRadioButtonId) {
+                    R.id.radioAlphabeticalAsc -> sortAlphabeticallyAsc()
+                    R.id.radioAlphabeticalDesc -> sortAlphabeticallyDesc()
+                }
+            }
+        }
+        CoroutineScope(Dispatchers.IO).launch {
+            displayTransactions(transactions)
+        }
+    }
+
+    // Sort by amount from lowest to highest
+    private fun sortByAmountLowestToHighest() {
+        transactions.sortBy { (it.data["moneyamount"] as? Double)?.absoluteValue ?: 0.0 }
+    }
+
+    // Sort by amount from highest to lowest
+    private fun sortByAmountHighestToLowest() {
+        transactions.sortByDescending { (it.data["moneyamount"] as? Double)?.absoluteValue ?: 0.0 }
+    }
+
+    // Sort by date from oldest to newest
+    private fun sortByDateOldestToNewest() {
         transactions.sortBy { it.data["time"] as? String }
-        CoroutineScope(Dispatchers.IO).launch {
-            withContext(Dispatchers.Main) {
-                displayTransactions(transactions)
-            }
-        }
     }
 
-    // Filter by cost
-    private fun filterByCost() {
-        transactions.sortBy { it.data["moneyamount"] as? Double }
-        CoroutineScope(Dispatchers.IO).launch {
-            withContext(Dispatchers.Main) {
-                displayTransactions(transactions)
-            }
-        }
-    }
-
-    // Filter by company
-    private fun filterByCompany() {
-        transactions.sortBy { it.data["transname"] as? String }
-        CoroutineScope(Dispatchers.IO).launch {
-            withContext(Dispatchers.Main) {
-                displayTransactions(transactions)
-            }
-        }
-    }
-
-    // Sort transactions by newest to oldest
-    private fun sortByNewestToOldest() {
+    // Sort by date from newest to oldest
+    private fun sortByDateNewestToOldest() {
         transactions.sortByDescending { it.data["time"] as? String }
-        CoroutineScope(Dispatchers.IO).launch {
-            withContext(Dispatchers.Main) {
-                displayTransactions(transactions)
-            }
-        }
     }
 
-    // Sort transactions alphabetically (ascending)
+    // Sort transactions alphabetically (ascending A-Z) by company name
     private fun sortAlphabeticallyAsc() {
         transactions.sortBy { it.data["transname"] as? String }
-        CoroutineScope(Dispatchers.IO).launch {
-            withContext(Dispatchers.Main) {
-                displayTransactions(transactions)
-            }
-        }
     }
 
-    // Sort transactions alphabetically (descending)
+    // Sort transactions alphabetically (descending Z-A) by company name
     private fun sortAlphabeticallyDesc() {
         transactions.sortByDescending { it.data["transname"] as? String }
-        CoroutineScope(Dispatchers.IO).launch {
-            withContext(Dispatchers.Main) {
-                displayTransactions(transactions)
-            }
-        }
     }
+
+
+
 
     // Periodically fetch updates from the database
     private fun startPeriodicUpdates() {
@@ -415,4 +469,6 @@ class UserDashboardActivity : AppCompatActivity() {
         super.onDestroy()
         updateHandler.removeCallbacksAndMessages(null)
     }
+
+
 }

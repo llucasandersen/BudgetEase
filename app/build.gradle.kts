@@ -4,6 +4,8 @@ plugins {
     alias(libs.plugins.org.jetbrains.kotlin.android)
 }
 
+
+
 android {
     namespace = "com.llucasandersen.lucasfbla2025bankingapp"
     compileSdk = 34
@@ -36,6 +38,7 @@ android {
     }
 }
 
+
 dependencies {
 
     implementation(libs.core.ktx)
@@ -48,8 +51,14 @@ dependencies {
     // Add Appwrite SDK
     implementation("io.appwrite:sdk-for-android:4.0.0")
 
+    implementation(libs.mpandroidchart)
     // Add JitPack for loading button
     implementation("com.github.leandroborgesferreira:loading-button-android:2.3.0")
+    implementation("com.github.PhilJay:MPAndroidChart:v3.1.0")
+    implementation("com.github.lecho:hellocharts-library:1.5.8@aar")
+    implementation(libs.generativeai)
+    implementation(libs.filament.android)
+
 
 
 

@@ -10,6 +10,7 @@
             android:theme="@style/Theme.LucasFBLA2025BankingApp"
             tools:targetApi="31">
 
+        <!-- Login Activity -->
         <activity
                 android:name=".LoginActivity"
                 android:exported="true"
@@ -20,13 +21,23 @@
             </intent-filter>
         </activity>
 
-        <!-- Declare AdminDashboardActivity -->
+        <!-- Admin Dashboard Activity -->
         <activity android:name=".AdminDashboardActivity"
                   android:exported="true"
                   android:theme="@style/Theme.LucasFBLA2025BankingApp"/>
 
-        <!-- Declare UserDashboardActivity if needed -->
+        <!-- User Dashboard Activity -->
         <activity android:name=".UserDashboardActivity"
+                  android:exported="true"
+                  android:theme="@style/Theme.LucasFBLA2025BankingApp"/>
+
+        <!-- Finances Activity -->
+        <activity android:name=".FinancesActivity"
+                  android:exported="true"
+                  android:theme="@style/Theme.LucasFBLA2025BankingApp"/>
+
+        <!-- Settings Activity -->
+        <activity android:name=".SettingsActivity"
                   android:exported="true"
                   android:theme="@style/Theme.LucasFBLA2025BankingApp"/>
 

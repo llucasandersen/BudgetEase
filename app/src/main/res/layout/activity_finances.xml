@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.drawerlayout.widget.DrawerLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        android:id="@+id/drawer_layout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+
+    <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:padding="16dp" android:background="@drawable/ic_launcher_background">
+
+        <LinearLayout
+                android:orientation="vertical"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+
+            <!-- Sorting Buttons -->
+
+            <!-- Line Chart for Balance Over Time -->
+            <Button
+                    android:id="@+id/btnSortByDate"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Sort by Date"/>
+            <Button
+                    android:id="@+id/btnSortByAmount"
+                    android:layout_width="397dp"
+                    android:layout_height="wrap_content"
+                    android:text="Sort by Amount"/>
+
+            <!-- Pie Chart for Income vs Expenses -->
+            <com.github.mikephil.charting.charts.LineChart
+                    android:id="@+id/lineChart"
+                    android:layout_width="match_parent"
+                    android:layout_height="300dp"/>
+            <com.github.mikephil.charting.charts.PieChart
+                    android:id="@+id/pieChart"
+                    android:layout_width="match_parent"
+                    android:layout_height="300dp"/>
+
+
+            <!-- AI Analysis TextView -->
+            <TextView
+                    android:id="@+id/aiAnalysisTextView"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="AI Analysis will appear here"
+                    android:paddingTop="16dp"
+                    android:textSize="16sp"/>
+
+            <WebView
+                    android:id="@+id/aiAnalysisWebView"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:padding="16dp"
+                    android:background="@color/colorAccent"/>
+
+        </LinearLayout>
+    </ScrollView>
+
+    <!-- Navigation Drawer -->
+    <com.google.android.material.navigation.NavigationView
+            android:id="@+id/nav_view"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_gravity="start"
+            android:background="?android:attr/windowBackground"
+            app:menu="@menu/drawer_menu" />
+
+</androidx.drawerlayout.widget.DrawerLayout>

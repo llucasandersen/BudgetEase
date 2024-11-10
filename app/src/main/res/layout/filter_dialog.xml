@@ -84,6 +84,22 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Alphabetical (Z-A)" />
+
+            <!-- Amount Ascending -->
+            <RadioButton
+                    android:id="@+id/radioCostAsc"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Amount (Lowest to Highest)"
+                    android:visibility="gone" /> <!-- Hidden initially, shown based on filter selection -->
+
+            <!-- Amount Descending -->
+            <RadioButton
+                    android:id="@+id/radioCostDesc"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Amount (Highest to Lowest)"
+                    android:visibility="gone" /> <!-- Hidden initially, shown based on filter selection -->
         </RadioGroup>
     </LinearLayout>
 </LinearLayout>

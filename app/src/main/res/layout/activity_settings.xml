@@ -1,0 +1,79 @@
+<androidx.drawerlayout.widget.DrawerLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:id="@+id/drawer_layout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@drawable/ic_launcher_background"
+        tools:context=".SettingsActivity">
+
+
+    <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+
+
+        <ScrollView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="16dp">
+
+            <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+
+                <!-- Username TextView -->
+                <TextView
+                        android:id="@+id/usernameTextView"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textSize="24sp"
+                        android:textStyle="bold"
+                        android:layout_marginBottom="16dp"
+                        android:textColor="@android:color/black"
+                        android:text="Username Placeholder" />
+
+                <!-- Change Password Option -->
+                <TextView
+                        android:id="@+id/changePassword"
+                        style="@style/viewParent.headerText.settingsTextIcon"
+                        android:drawableLeft="@drawable/ic_edit_password"
+                        android:text="Change Password"
+                        android:drawablePadding="8dp"
+                        android:layout_marginBottom="16dp" />
+
+                <TextView
+                        android:id="@+id/errorTextView"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:textColor="@android:color/holo_red_dark"
+                        android:visibility="gone"
+                        android:layout_marginTop="8dp"
+                        android:text="Error message placeholder" />
+
+                <!-- Logout Option -->
+                <TextView
+                        android:id="@+id/logout"
+                        style="@style/viewParent.headerText.settingsTextIcon"
+                        android:drawableLeft="@drawable/ic_logout"
+                        android:text="Logout"
+                        android:drawablePadding="8dp"
+                        android:layout_marginBottom="16dp" />
+            </LinearLayout>
+        </ScrollView>
+    </LinearLayout>
+
+    <!-- Navigation Drawer -->
+    <com.google.android.material.navigation.NavigationView
+            android:id="@+id/nav_view"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_gravity="start"
+            android:background="?android:attr/windowBackground"
+            app:menu="@menu/drawer_menu" />
+
+</androidx.drawerlayout.widget.DrawerLayout>
