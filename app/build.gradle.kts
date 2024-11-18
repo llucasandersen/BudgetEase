@@ -58,6 +58,7 @@ dependencies {
     implementation("com.github.lecho:hellocharts-library:1.5.8@aar")
     implementation(libs.generativeai)
     implementation(libs.filament.android)
+    implementation(libs.androidx.recyclerview.v131)
 
 
 

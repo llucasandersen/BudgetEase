@@ -1,21 +1,59 @@
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-                                                   xmlns:app="http://schemas.android.com/apk/res-auto"
-                                                   xmlns:tools="http://schemas.android.com/tools"
-                                                   android:layout_width="match_parent"
-                                                   android:layout_height="match_parent"
-                                                   tools:context=".AdminDashboardActivity">
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:padding="16dp">
 
-    <TextView
-            android:id="@+id/adminDashboardText"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Welcome to Admin Dashboard"
-            android:textSize="24sp"
-            android:textColor="@color/colorPrimaryDark"
-            android:textStyle="bold"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            android:layout_marginTop="50dp" />
+    <LinearLayout
+            xmlns:android="http://schemas.android.com/apk/res/android"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:padding="16dp">
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+        <TextView
+                android:id="@+id/welcomeTextView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Hi, Lucas"
+                android:textSize="24sp"
+                android:textStyle="bold"
+                android:layout_marginBottom="16dp" />
+
+        <Spinner
+                android:id="@+id/userDropdown"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="16dp" />
+
+        <Button
+                android:id="@+id/viewBalancesButton"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="View User Balances"
+                android:layout_marginBottom="8dp" />
+
+        <Button
+                android:id="@+id/manageBalancesButton"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Manage Balances"
+                android:layout_marginBottom="8dp" />
+
+        <Button
+                android:id="@+id/viewTransactionsButton"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="View Transactions"
+                android:layout_marginBottom="16dp" />
+
+        <TextView
+                android:id="@+id/resultTextView"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Results will appear here"
+                android:textSize="16sp"
+                android:background="#EEEEEE"
+                android:padding="8dp" />
+
+    </LinearLayout>
+</ScrollView>
