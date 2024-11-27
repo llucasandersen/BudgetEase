@@ -250,7 +250,7 @@ class FinancesActivity : AppCompatActivity() {
 
         // Build the request with the Google Gemini API endpoint
         val request = Request.Builder()
-            .url("https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-pro-002:generateContent?key=$geminiApiKey")
+            .url("https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash-8b:generateContent?key=$geminiApiKey")
             .addHeader("Content-Type", "application/json")
             .post(RequestBody.create("application/json; charset=utf-8".toMediaTypeOrNull(), json.toString()))
             .build()
