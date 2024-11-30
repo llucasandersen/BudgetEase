@@ -39,6 +39,7 @@ class LoginActivity : AppCompatActivity() {
 
         account = Account(client)
 
+
         // Login button click listener
         loginButton.setOnClickListener {
             val email = emailEditText.text.toString().trim()

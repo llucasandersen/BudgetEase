@@ -62,6 +62,14 @@ dependencies {
 
 
 
+    implementation("com.itextpdf:itextpdf:5.5.13")
+    implementation(libs.androidx.ui.text.android)
+
+
+
+
+
+
 
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.test.ext.junit)

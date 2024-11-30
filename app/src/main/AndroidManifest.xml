@@ -1,6 +1,14 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
           xmlns:tools="http://schemas.android.com/tools">
 
+
+    <uses-permission android:name="android.permission.READ_MEDIA_IMAGES" />
+    <uses-permission android:name="android.permission.READ_MEDIA_VIDEO" />
+    <uses-permission android:name="android.permission.READ_MEDIA_AUDIO" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"/>
+
+
     <application
             android:allowBackup="true"
             android:icon="@mipmap/ic_launcher"
@@ -9,6 +17,17 @@
             android:supportsRtl="true"
             android:theme="@style/Theme.LucasFBLA2025BankingApp"
             tools:targetApi="31">
+
+        <provider
+                android:name="androidx.core.content.FileProvider"
+                android:authorities="com.llucasandersen.lucasfbla2025bankingapp.fileprovider"
+                android:exported="false"
+                android:grantUriPermissions="true">
+            <meta-data
+                    android:name="android.support.FILE_PROVIDER_PATHS"
+                    android:resource="@xml/file_paths" />
+        </provider>
+
 
         <!-- Login Activity -->
         <activity
@@ -36,10 +55,14 @@
                   android:exported="true"
                   android:theme="@style/Theme.LucasFBLA2025BankingApp"/>
 
+
         <!-- Settings Activity -->
         <activity android:name=".SettingsActivity"
                   android:exported="true"
                   android:theme="@style/Theme.LucasFBLA2025BankingApp"/>
 
+
+
     </application>
+
 </manifest>

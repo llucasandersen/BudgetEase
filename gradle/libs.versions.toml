@@ -16,6 +16,7 @@ biometric-ktx = "1.1.0"
 generativeai = "0.9.0"
 filament-android = "1.17.1"
 recyclerview = "1.3.2"
+ui-text-android = "1.7.5"
 
 [libraries]
 androidx-recyclerview-v131 = { module = "androidx.recyclerview:recyclerview", version.ref = "androidx-recyclerview" }
@@ -33,6 +34,7 @@ androidx-biometric-ktx = { group = "androidx.biometric", name = "biometric-ktx",
 generativeai = { group = "com.google.ai.client.generativeai", name = "generativeai", version.ref = "generativeai" }
 filament-android = { group = "com.google.ar.sceneform", name = "filament-android", version.ref = "filament-android" }
 androidx-recyclerview = { group = "androidx.recyclerview", name = "recyclerview", version.ref = "recyclerview" }
+androidx-ui-text-android = { group = "androidx.compose.ui", name = "ui-text-android", version.ref = "ui-text-android" }
 
 [plugins]
 com-android-application = { id = "com.android.application", version.ref = "agp" }

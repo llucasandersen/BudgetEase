@@ -17,6 +17,15 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
 
+            <Button
+                    android:id="@+id/btnExportReport"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Export Report"
+                    android:padding="16dp"
+                    android:layout_marginTop="16dp"/>
+
+
 
             <!-- Sorting Buttons -->
 
