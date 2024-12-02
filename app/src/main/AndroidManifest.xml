@@ -61,6 +61,14 @@
                   android:exported="true"
                   android:theme="@style/Theme.LucasFBLA2025BankingApp"/>
 
+        <!-- Help Activity -->
+        <activity android:name=".HelpActivity"
+                  android:exported="true"
+                  android:theme="@style/Theme.LucasFBLA2025BankingApp"/>
+
+
+
+
 
 
     </application>

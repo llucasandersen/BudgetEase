@@ -49,6 +49,7 @@ class SettingsActivity : AppCompatActivity() {
                 R.id.nav_home -> navigateToHome()
                 R.id.nav_finances -> navigateToFinances()
                 R.id.nav_settings -> drawerLayout.closeDrawer(GravityCompat.START)
+                R.id.nav_help -> navigateToHelp()
             }
             true
         }
@@ -72,6 +73,13 @@ class SettingsActivity : AppCompatActivity() {
     private fun navigateToFinances() {
         val intent = Intent(this, FinancesActivity::class.java)
         intent.putExtra("username", userEmail)
+        intent.flags = Intent.FLAG_ACTIVITY_CLEAR_TOP or Intent.FLAG_ACTIVITY_SINGLE_TOP
+        startActivity(intent)
+    }
+
+    private fun navigateToHelp() {
+        val intent = Intent(this, HelpActivity::class.java)
+        intent.putExtra("user_email", userEmail)
         intent.flags = Intent.FLAG_ACTIVITY_CLEAR_TOP or Intent.FLAG_ACTIVITY_SINGLE_TOP
         startActivity(intent)
     }

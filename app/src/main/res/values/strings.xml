@@ -4,4 +4,15 @@
     <string name="login_password_hint">Password</string>
     <string name="login_signup_hint">Don’t have an account? Sign Up</string>
     <string name="_0_00">$0.00</string>
+    <string name="ai_assistant_icon">AI Assistant Icon</string>
+    <string name="send_button">Send</string>
+    <string name="finances_icon">Finances Icon</string>
+    <string name="home_icon">Home Icon</string>
+    <string name="settings_icon">Settings Icon</string>
+    <string name="help_icon">Help Icon</string>
+    <string name="search_filter_icon">Search and Filter Icon</string>
+    <string name="search_icon">Search Icon</string>
+    <string name="filter_icon">Filter Icon</string>
+    <string name="decorative_footer">Decorative Footer</string>
+    <string name="welcome_icon">Welcome Icon</string>
 </resources>

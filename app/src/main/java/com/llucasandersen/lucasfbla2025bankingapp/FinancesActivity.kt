@@ -552,6 +552,14 @@ class FinancesActivity : AppCompatActivity() {
                 drawerLayout.closeDrawer(GravityCompat.START)
 
             }
+            R.id.nav_help -> {
+                val userEmail = intent.getStringExtra("user_email") ?: ""
+                val intent = Intent(this, HelpActivity::class.java)
+                intent.putExtra("user_email", userEmail)
+                intent.flags = Intent.FLAG_ACTIVITY_CLEAR_TOP or Intent.FLAG_ACTIVITY_SINGLE_TOP
+                startActivity(intent)
+                drawerLayout.closeDrawer(GravityCompat.START)
+            }
         }
     }
 }

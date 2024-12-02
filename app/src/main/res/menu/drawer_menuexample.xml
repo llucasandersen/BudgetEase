@@ -15,5 +15,9 @@
             android:id="@+id/nav_help"
             android:icon="@drawable/ic_edit_profile"
             android:title="Help" />
-
+    <!-- Tutorial-Specific "Next Page" -->
+    <item
+            android:id="@+id/nav_next"
+            android:icon="@drawable/ic_menu"
+            android:title="Next Page" />
 </menu>

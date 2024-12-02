@@ -1,0 +1,124 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                xmlns:app="http://schemas.android.com/apk/res-auto"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@drawable/banking_header_background"
+                android:padding="16dp">
+
+    <!-- AI Assistant Icon -->
+    <ImageView
+            android:id="@+id/aiAssistantIcon"
+            android:layout_width="80dp"
+            android:layout_height="80dp"
+            android:src="@drawable/ic_ai_icon"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="20dp"
+            android:contentDescription="@string/ai_assistant_icon" />
+
+    <!-- Title -->
+    <TextView
+            android:id="@+id/aiTitle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/aiAssistantIcon"
+            android:layout_marginTop="10dp"
+            android:text="Meet Budget Ease AI Assistant"
+            android:textSize="20sp"
+            android:textColor="@android:color/white"
+            android:fontFamily="sans-serif-medium"
+            android:gravity="center"
+            android:textStyle="bold"
+            android:layout_centerHorizontal="true" />
+
+    <!-- Description -->
+    <TextView
+            android:id="@+id/aiDescription"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/aiTitle"
+            android:layout_marginTop="8dp"
+            android:text="Ask any questions about Budget Ease, and I will provide guidance step by step!"
+            android:textSize="16sp"
+            android:textColor="@android:color/white"
+            android:fontFamily="sans-serif-light"
+            android:gravity="center"
+            android:layout_centerHorizontal="true"
+            android:paddingHorizontal="20dp" />
+
+    <!-- Scrollable Chat Container -->
+    <ScrollView
+            android:id="@+id/chatScrollView"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_below="@id/aiDescription"
+            android:layout_above="@id/chatInputSection"
+            android:layout_marginTop="20dp"
+            android:background="@drawable/search_bar_bg">
+
+        <LinearLayout
+                android:id="@+id/chatContainer"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:padding="10dp">
+
+            <!-- Chat Messages -->
+            <TextView
+                    android:id="@+id/chatMessages"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="AI Assistant: Hello! How can I help you today?"
+                    android:textSize="14sp"
+                    android:textColor="@android:color/black"
+                    android:fontFamily="sans-serif-light"
+                    android:padding="10dp"
+                    android:background="@android:color/white" />
+        </LinearLayout>
+    </ScrollView>
+
+    <!-- Input Section -->
+    <LinearLayout
+            android:id="@+id/chatInputSection"
+            android:layout_width="match_parent"
+            android:layout_height="60dp"
+            android:layout_above="@+id/beginBudgetEaseButton"
+            android:orientation="horizontal"
+            android:background="@drawable/search_bar_bg"
+            android:padding="10dp">
+
+        <EditText
+                android:id="@+id/chatInputField"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:hint="Type your question here..."
+                android:textSize="14sp"
+                android:textColor="@android:color/black"
+                android:textColorHint="@android:color/black"
+                android:fontFamily="sans-serif-light"
+                android:background="@drawable/search_bar_bg"
+                android:paddingStart="10dp" />
+
+        <ImageButton
+                android:id="@+id/sendButton"
+                android:layout_width="50dp"
+                android:layout_height="match_parent"
+                android:src="@drawable/ic_send"
+                android:background="@drawable/ic_launcher_background"
+                android:contentDescription="@string/send_button" />
+    </LinearLayout>
+
+    <!-- Begin Your Budget Ease Button -->
+    <com.github.leandroborgesferreira.loadingbutton.customViews.CircularProgressButton
+            android:id="@+id/beginBudgetEaseButton"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:layout_margin="16dp"
+            android:text="Begin Your Budget Ease"
+            android:background="@color/colorPrimary"
+            android:textColor="@android:color/white"
+            android:fontFamily="sans-serif-medium"
+            android:textStyle="bold"
+            android:textSize="18sp" />
+</RelativeLayout>

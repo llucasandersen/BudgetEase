@@ -1,0 +1,126 @@
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+            xmlns:app="http://schemas.android.com/apk/res-auto"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:fillViewport="true"
+            android:background="@drawable/banking_header_background">
+
+    <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="16dp">
+
+        <!-- Finances Icon -->
+        <ImageView
+                android:id="@+id/financesIcon"
+                android:layout_width="100dp"
+                android:layout_height="100dp"
+                android:src="@drawable/ic_finances"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="20dp"
+                android:contentDescription="@string/finances_icon" />
+
+        <!-- Title -->
+        <TextView
+                android:id="@+id/financesTitle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/financesIcon"
+                android:layout_marginTop="10dp"
+                android:text="Master Your Finances"
+                android:textSize="22sp"
+                android:textColor="@android:color/white"
+                android:fontFamily="sans-serif-medium"
+                android:gravity="center"
+                android:textStyle="bold"
+                android:layout_centerHorizontal="true" />
+
+        <!-- Description -->
+        <TextView
+                android:id="@+id/financesDescription"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/financesTitle"
+                android:layout_marginTop="8dp"
+                android:text="The Finances page provides tools to track your income, expenses, and analyze your spending habits with AI. You’ll also see detailed graphs for better understanding."
+                android:textSize="16sp"
+                android:textColor="@android:color/white"
+                android:fontFamily="sans-serif-light"
+                android:gravity="center"
+                android:layout_centerHorizontal="true"
+                android:paddingHorizontal="20dp" />
+
+        <!-- Example Graphs -->
+        <LinearLayout
+                android:id="@+id/financesGraphsContainer"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/financesDescription"
+                android:layout_marginTop="20dp"
+                android:orientation="vertical"
+                android:padding="10dp"
+                android:background="@drawable/login_background_rounded">
+
+            <!-- Line Chart Example -->
+            <!-- Line Chart Example -->
+            <ImageView
+                    android:id="@+id/lineChartExample"
+                    android:layout_width="match_parent"
+                    android:layout_height="200dp"
+                    android:src="@drawable/graphexample"
+                    android:layout_marginBottom="10dp" />
+
+            <!-- Pie Chart Example -->
+            <ImageView
+                    android:id="@+id/pieChartExample"
+                    android:layout_width="match_parent"
+                    android:layout_height="200dp"
+                    android:src="@drawable/pieexample" />
+
+        </LinearLayout>
+
+        <!-- AI Analysis Section -->
+        <TextView
+                android:id="@+id/aiAnalysisTitle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/financesGraphsContainer"
+                android:layout_marginTop="16dp"
+                android:text="AI-Powered Insights"
+                android:textSize="18sp"
+                android:textColor="@android:color/white"
+                android:fontFamily="sans-serif-medium"
+                android:gravity="center"
+                android:layout_centerHorizontal="true" />
+
+        <TextView
+                android:id="@+id/aiAnalysisDescription"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/aiAnalysisTitle"
+                android:layout_marginTop="8dp"
+                android:text="Budget Ease analyzes your spending patterns and provides smart recommendations. Our AI assistant helps you manage your finances efficiently."
+                android:textSize="16sp"
+                android:textColor="@android:color/white"
+                android:fontFamily="sans-serif-light"
+                android:gravity="center"
+                android:layout_centerHorizontal="true"
+                android:paddingHorizontal="20dp" />
+
+        <!-- Navigation Button -->
+        <com.github.leandroborgesferreira.loadingbutton.customViews.CircularProgressButton
+                android:id="@+id/nextButton"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="16dp"
+                android:layout_alignParentBottom="true"
+                android:text="Next"
+                android:background="@color/colorPrimary"
+                android:textColor="@android:color/white"
+                android:fontFamily="sans-serif-medium"
+                android:textSize="16sp"
+                android:layout_marginTop="-10dp"
+                android:layout_marginBottom="32dp"
+                android:layout_below="@+id/aiAnalysisDescription"/>
+    </RelativeLayout>
+</ScrollView>

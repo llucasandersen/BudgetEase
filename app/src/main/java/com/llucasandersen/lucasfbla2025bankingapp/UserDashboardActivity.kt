@@ -75,6 +75,14 @@ class UserDashboardActivity : AppCompatActivity() {
                     drawerLayout.closeDrawer(GravityCompat.START)
                     true
                 }
+                R.id.nav_help -> {
+                    val userEmail = intent.getStringExtra("user_email") ?: ""
+                    val intent = Intent(this, HelpActivity::class.java)
+                    intent.putExtra("user_email", userEmail)
+                    startActivity(intent)
+                    drawerLayout.closeDrawer(GravityCompat.START)
+                    true
+                }
                 else -> false
             }
         }

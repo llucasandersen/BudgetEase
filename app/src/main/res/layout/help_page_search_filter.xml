@@ -1,0 +1,116 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@drawable/banking_header_background"
+                android:padding="16dp">
+
+    <!-- Header Icon -->
+    <ImageView
+            android:id="@+id/searchFilterIcon"
+            android:layout_width="120dp"
+            android:layout_height="120dp"
+            android:src="@drawable/ic_filter_list"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="50dp"
+            android:contentDescription="@string/search_filter_icon" />
+
+    <!-- Title Text -->
+    <TextView
+            android:id="@+id/titleText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/searchFilterIcon"
+            android:layout_marginTop="20dp"
+            android:text="Explore Filters &amp; Search"
+            android:textSize="24sp"
+            android:textColor="@android:color/white"
+            android:fontFamily="sans-serif-medium"
+            android:gravity="center"
+            android:textStyle="bold"
+            android:layout_centerHorizontal="true" />
+
+    <!-- Description -->
+    <TextView
+            android:id="@+id/descriptionText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/titleText"
+            android:layout_marginTop="10dp"
+            android:text="Use the search bar to find specific transactions, and the filter icon to narrow down your results."
+            android:textSize="16sp"
+            android:textColor="@android:color/white"
+            android:fontFamily="sans-serif-light"
+            android:gravity="center"
+            android:layout_centerHorizontal="true"
+            android:paddingHorizontal="20dp" />
+
+    <!-- Search Bar Mock -->
+    <LinearLayout
+            android:id="@+id/searchBarContainer"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:layout_below="@id/descriptionText"
+            android:layout_marginTop="30dp"
+            android:background="@drawable/search_bar_bg"
+            android:orientation="horizontal"
+            android:paddingHorizontal="10dp">
+
+        <ImageView
+                android:id="@+id/searchIcon"
+                android:layout_width="24dp"
+                android:layout_height="24dp"
+                android:src="@drawable/ic_menu"
+                android:contentDescription="@string/search_icon"
+                android:layout_gravity="center_vertical" />
+
+        <TextView
+                android:id="@+id/searchHint"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginStart="10dp"
+                android:text="Search for transactions..."
+                android:textSize="14sp"
+                android:textColor="@android:color/darker_gray"
+                android:fontFamily="sans-serif-light"
+                android:gravity="center_vertical"/>
+    </LinearLayout>
+
+    <!-- Filter Icon Mock -->
+    <ImageView
+            android:id="@+id/filterIcon"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:layout_below="@id/searchBarContainer"
+            android:layout_marginTop="20dp"
+            android:src="@drawable/ic_filter_list"
+            android:contentDescription="@string/filter_icon"
+            android:layout_centerHorizontal="true"
+            android:background="@drawable/ic_launcher_background"
+            android:padding="10dp" />
+
+    <!-- Next Button -->
+    <com.github.leandroborgesferreira.loadingbutton.customViews.CircularProgressButton
+            android:id="@+id/nextButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/filterIcon"
+            android:layout_marginTop="40dp"
+            android:layout_centerHorizontal="true"
+            android:paddingHorizontal="30dp"
+            android:text="Next"
+            android:backgroundTint="@color/colorPrimary"
+            android:textColor="@android:color/white"
+            android:fontFamily="sans-serif-medium"
+            android:textStyle="bold"
+            android:textSize="16sp" />
+
+    <!-- Decorative Footer -->
+    <ImageView
+            android:id="@+id/decorativeFooter"
+            android:layout_width="match_parent"
+            android:layout_height="150dp"
+            android:layout_alignParentBottom="true"
+            android:src="@drawable/ic_login_bk"
+            android:scaleType="centerCrop"
+            android:contentDescription="@string/decorative_footer" android:layout_marginBottom="24dp"/>
+</RelativeLayout>
