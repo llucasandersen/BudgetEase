@@ -199,7 +199,7 @@ class UserDashboardActivity : AppCompatActivity() {
                 .parse(transaction.data["time"] as? String ?: "")?.time ?: continue
 
             val amount = transaction.data["moneyamount"] as? Double ?: 0.0
-            val expensetype = transaction.data["expensetype"] as? String ?: "epic"
+            val expensetype = transaction.data["expensetype"] as? String ?: "expense"
             val isRedeemed = transaction.data["isredeemed"] as? Boolean ?: false
 
             // Adjust balance for unredeemed transactions

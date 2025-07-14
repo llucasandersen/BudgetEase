@@ -11,6 +11,7 @@ import com.google.android.material.tabs.TabLayout
 import com.google.android.material.tabs.TabLayoutMediator
 import io.appwrite.Client
 import io.appwrite.services.Databases
+import io.appwrite.Query
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
@@ -88,7 +89,7 @@ class HelpActivity : AppCompatActivity() {
                 val response = databases.listDocuments(
                     databaseId = "670b28f7d3c283d1d07c",
                     collectionId = "670b29153753e63ec2b7",
-                    queries = listOf("username=$email")
+                    queries = listOf(Query.equal("username", email))
                 )
                 val documentId = response.documents.firstOrNull()?.id ?: return@launch
                 databases.updateDocument(

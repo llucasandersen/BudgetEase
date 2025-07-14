@@ -18,6 +18,7 @@ import okhttp3.RequestBody
 import org.json.JSONArray
 import org.json.JSONObject
 import java.util.concurrent.TimeUnit
+import com.llucasandersen.lucasfbla2025bankingapp.BuildConfig
 
 class HelpPagerAdapter(
     private val context: Context,
@@ -56,27 +57,42 @@ class HelpPagerAdapter(
 
     // Method to navigate to the next page
     fun navigateToNextPage() {
-        onPageChange(4)
+        if (currentPageIndex < pages.lastIndex) {
+            currentPageIndex++
+            onPageChange(currentPageIndex)
+        }
     }
 
     private fun setupWelcomePage(holder: ViewHolder) {
         val nextButton = holder.itemView.findViewById<Button>(R.id.nextButton)
-        nextButton?.setOnClickListener { onPageChange(1) }
+        nextButton?.setOnClickListener {
+            currentPageIndex = 1
+            onPageChange(1)
+        }
     }
 
     private fun setupSearchFilterPage(holder: ViewHolder) {
         val nextButton = holder.itemView.findViewById<Button>(R.id.nextButton)
-        nextButton?.setOnClickListener { onPageChange(2) }
+        nextButton?.setOnClickListener {
+            currentPageIndex = 2
+            onPageChange(2)
+        }
     }
 
     private fun setupFinancesPage(holder: ViewHolder) {
         val nextButton = holder.itemView.findViewById<Button>(R.id.nextButton)
-        nextButton?.setOnClickListener { onPageChange(3) }
+        nextButton?.setOnClickListener {
+            currentPageIndex = 3
+            onPageChange(3)
+        }
     }
 
     private fun setupNavMenuPage(holder: ViewHolder) {
         val nextButton = holder.itemView.findViewById<Button>(R.id.nextButton)
-        nextButton?.setOnClickListener { onPageChange(4) }
+        nextButton?.setOnClickListener {
+            currentPageIndex = 4
+            onPageChange(4)
+        }
     }
 
     private fun setupAIChatPage(holder: ViewHolder) {
@@ -140,7 +156,7 @@ class HelpPagerAdapter(
                 }
 
                 val request = Request.Builder()
-                    .url("https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent?key=AIzaSyANCEYsx6C7oAPed3kgVojTdfJzF3IrgPI")
+                    .url("https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent?key=${BuildConfig.GEMINI_API_KEY}")
                     .addHeader("Content-Type", "application/json")
                     .post(RequestBody.create("application/json; charset=utf-8".toMediaTypeOrNull(), json.toString()))
                     .build()

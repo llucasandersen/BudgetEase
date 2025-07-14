@@ -49,10 +49,11 @@ import java.text.SimpleDateFormat
 import java.util.*
 import java.util.concurrent.TimeUnit
 import kotlin.math.abs
+import com.llucasandersen.lucasfbla2025bankingapp.BuildConfig
 
 class FinancesActivity : AppCompatActivity() {
 
-    private val geminiApiKey = "AIzaSyANCEYsx6C7oAPed3kgVojTdfJzF3IrgPI"
+    private val geminiApiKey = BuildConfig.GEMINI_API_KEY
 
     private lateinit var lineChart: LineChart
     private lateinit var pieChart: PieChart

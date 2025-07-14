@@ -2,6 +2,8 @@
 
 Welcome to **Budget Ease**, a mobile app created by **Lucas Andersen** for the **2024-2025 FBLA Coding and Programming competition**. Budget Ease is designed to help students effectively manage their personal finances with ease and precision.
 
+This project was a national competitor in the FBLA Coding and Programming event, showcasing a full-featured approach to personal finance management.
+
 ---
 
 ## 🎯 Key Features 🔑
@@ -38,3 +40,10 @@ Welcome to **Budget Ease**, a mobile app created by **Lucas Andersen** for the *
 ## 🌟 Made with ❤️ by Lucas Andersen
 
 "Budget Ease simplifies student finances, offering the tools to spend smarter and save better!"
+
+## Setup API Keys
+
+1. Copy `local.properties.example` to `local.properties`.
+2. Add your Gemini API key to the `GEMINI_API_KEY` entry.
+   This file is ignored by git so your key remains private.
+
