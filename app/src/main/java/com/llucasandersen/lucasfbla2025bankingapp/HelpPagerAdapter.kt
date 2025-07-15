@@ -15,6 +15,7 @@ import okhttp3.MediaType.Companion.toMediaTypeOrNull
 import okhttp3.OkHttpClient
 import okhttp3.Request
 import okhttp3.RequestBody
+import com.llucasandersen.lucasfbla2025bankingapp.BuildConfig
 import org.json.JSONArray
 import org.json.JSONObject
 import java.util.concurrent.TimeUnit
@@ -24,6 +25,9 @@ class HelpPagerAdapter(
     private val email: String?,
     private val onPageChange: (Int) -> Unit
 ) : RecyclerView.Adapter<HelpPagerAdapter.ViewHolder>() {
+
+    // Gemini API key provided via BuildConfig
+    private val geminiApiKey = BuildConfig.GEMINI_API_KEY
 
     private val pages = listOf(
         R.layout.help_page_welcome,
@@ -140,7 +144,7 @@ class HelpPagerAdapter(
                 }
 
                 val request = Request.Builder()
-                    .url("https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent?key=AIzaSyANCEYsx6C7oAPed3kgVojTdfJzF3IrgPI")
+                    .url("https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent?key=$geminiApiKey")
                     .addHeader("Content-Type", "application/json")
                     .post(RequestBody.create("application/json; charset=utf-8".toMediaTypeOrNull(), json.toString()))
                     .build()
