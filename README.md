@@ -2,9 +2,9 @@
 
 Welcome to **Budget Ease**, a mobile app created by **Lucas Andersen** for the **2024-2025 FBLA Coding and Programming competition**. Budget Ease is designed to help students effectively manage their personal finances with ease and precision.
 
-🏆 **FBLA 2025 NLC National Contender**
+🏆 **FBLA 2025 NLC National Competitor**
 
-Budget Ease is gearing up for the **2025 FBLA National Leadership Conference (NLC)**. We're excited to showcase our project on the national stage!
+Budget Ease was a national competitor at the **2025 FBLA National Leadership Conference (NLC)**, where it proudly showcased its features.
 
 ---
 
