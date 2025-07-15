@@ -25,6 +25,7 @@ import com.github.mikephil.charting.components.XAxis
 import com.github.mikephil.charting.data.*
 import com.github.mikephil.charting.formatter.ValueFormatter
 import com.google.android.material.navigation.NavigationView
+import com.llucasandersen.lucasfbla2025bankingapp.BuildConfig
 import com.itextpdf.text.Document
 import com.itextpdf.text.Image
 import com.itextpdf.text.Paragraph
@@ -52,7 +53,8 @@ import kotlin.math.abs
 
 class FinancesActivity : AppCompatActivity() {
 
-    private val geminiApiKey = "AIzaSyANCEYsx6C7oAPed3kgVojTdfJzF3IrgPI"
+    // Gemini API key is provided at build time through BuildConfig
+    private val geminiApiKey = BuildConfig.GEMINI_API_KEY
 
     private lateinit var lineChart: LineChart
     private lateinit var pieChart: PieChart
