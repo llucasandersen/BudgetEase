@@ -1,5 +1,7 @@
 # 📊 Budget Ease 📱
 
+[![CI](https://github.com/llucasandersen/BudgetEase/actions/workflows/android-ci.yml/badge.svg)](https://github.com/llucasandersen/BudgetEase/actions/workflows/android-ci.yml) [![License](https://img.shields.io/github/license/llucasandersen/BudgetEase)](LICENSE) [![Issues](https://img.shields.io/github/issues/llucasandersen/BudgetEase)](https://github.com/llucasandersen/BudgetEase/issues)
+
 Welcome to **Budget Ease**, a mobile app created by **Lucas Andersen** for the **2024-2025 FBLA Coding and Programming competition**. Budget Ease is designed to help students effectively manage their personal finances with ease and precision.
 
 🏆 **FBLA 2025 NLC National Competitor**
